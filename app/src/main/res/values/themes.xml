@@ -1,0 +1,37 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.learnX" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/sabz</item>
+        <item name="colorPrimaryVariant">@color/sabz</item>
+        <!--        <item name="colorPrimaryVariant">@color/purple_700</item>-->
+        <item name="colorOnPrimary">@color/back</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:textViewStyle">@style/fontTextViewStyle</item>
+        <item name="buttonStyle">@style/fontButton</item>
+        <item name="fontFamily">@font/iransans</item>
+    </style>
+
+    <style name="fontTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/iransans</item>
+    </style>
+
+    <style name="fontButton" parent="android:Widget.Holo.Button">
+        <item name="fontFamily">@font/iransans</item>
+    </style>
+
+    <style name="Theme.learnX.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.learnX.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.learnX.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

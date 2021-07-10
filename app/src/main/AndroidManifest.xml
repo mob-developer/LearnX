@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="ir.mk.learnx">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.learnX"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
+        <activity android:name=".teach.EndSubCourse"></activity>
+        <activity android:name=".teach.LearnQuizActivity" />
+        <activity
+            android:name=".teach.LearnMovieActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".teach.SubCourseListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".teach.CourseListActivity"
+            android:label="@string/title_activity_course_list"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.learnX.NoActionBar" />
+        <activity
+            android:name=".test.Quiz2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".test.Quiz1"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Home"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".loading.Loading2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".loading.Loading1"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
