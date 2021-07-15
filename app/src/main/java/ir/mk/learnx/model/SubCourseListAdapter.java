@@ -41,11 +41,12 @@ public class SubCourseListAdapter extends RecyclerView.Adapter<SubCourseListAdap
         holder.bind(current.getTitle(),current.getProgress(),current.getImageId());
         holder.itemView.setOnClickListener(v -> {
 //            Toast.makeText(v.getContext(), ""+current.getId(), Toast.LENGTH_SHORT).show();
-            int firstStepType = getFirstStepType(current.getCourseId(), current.getId());
-            int numberOfAllStep = getNumberOfAllStep(current.getCourseId(), current.getId());
+            int firstStepType = getFirstStepType(current.getLesson(), current.getCourseId(), current.getId());
+            int numberOfAllStep = getNumberOfAllStep(current.getLesson(), current.getCourseId(), current.getId());
             switch (firstStepType){
                 case 0:
                     Intent intent0 = new Intent((SubCourseListActivity)v.getContext(), LearnMovieActivity.class);
+                    intent0.putExtra("lesson",current.getLesson());
                     intent0.putExtra("courseId",current.getCourseId());
                     intent0.putExtra("subCourseId",current.getId());
                     intent0.putExtra("step",1);
@@ -54,6 +55,7 @@ public class SubCourseListAdapter extends RecyclerView.Adapter<SubCourseListAdap
                     break;
                 case 1:
                     Intent intent1 = new Intent((SubCourseListActivity)v.getContext(), LearnQuizActivity.class);
+                    intent1.putExtra("lesson",current.getLesson());
                     intent1.putExtra("courseId",current.getCourseId());
                     intent1.putExtra("subCourseId",current.getId());
                     intent1.putExtra("step",1);
@@ -67,11 +69,11 @@ public class SubCourseListAdapter extends RecyclerView.Adapter<SubCourseListAdap
 
         });
     }
-    private int getFirstStepType(int courseId,int subCourseId){
+    private int getFirstStepType(int lesson, int courseId,int subCourseId){
         //TODO
         return 0;
     }
-    private int getNumberOfAllStep(int courseId,int subCourseId){
+    private int getNumberOfAllStep(int lesson, int courseId,int subCourseId){
         //TODO
         return 4;
     }

@@ -19,10 +19,12 @@ import ir.mk.learnx.teach.SubCourseListActivity;
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.ViewHolder> {
         private ArrayList<CourseList> listdata;
+        private int lesson;
 
         // RecyclerView recyclerView;
-        public CourseListAdapter(ArrayList<CourseList> listdata) {
+        public CourseListAdapter(ArrayList<CourseList> listdata, int lesson) {
             this.listdata = listdata;
+            this.lesson = lesson;
         }
 
         @Override
@@ -41,6 +43,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
 //                Toast.makeText(v.getContext(), ""+current.getTitle(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent((CourseListActivity)v.getContext(), SubCourseListActivity.class);
                 intent.putExtra("courseId",current.getId());
+                intent.putExtra("lesson",lesson);
                 ((CourseListActivity)v.getContext()).startActivity(intent);
             });
 //            holder.deleteItemView.setOnClickListener(new View.OnClickListener() {

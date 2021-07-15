@@ -2,6 +2,7 @@ package ir.mk.learnx.model;
 
 public class SubCourseList {
     private int id;
+    private int lesson;
     private int courseId;
     private String title;
     private String progress;
@@ -9,8 +10,9 @@ public class SubCourseList {
 
 
 
-    public SubCourseList(int id, int courseId, String title, String progress, int imageId) {
+    public SubCourseList(int id, int lesson, int courseId, String title, String progress, int imageId) {
         this.id = id;
+        this.lesson = lesson;
         this.courseId = courseId;
         this.title = title;
         this.progress = progress;
@@ -55,5 +57,13 @@ public class SubCourseList {
 
     public void setImageId(int imageId) {
         this.imageId = imageId;
+    }
+
+    public int getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(int lesson) {
+        this.lesson = lesson;
     }
 }

@@ -19,6 +19,7 @@ public class Home extends AppCompatActivity {
         Button testButton = findViewById(R.id.button_test);
         testButton.setOnClickListener(v -> {
             Intent i = new Intent(Home.this, CourseListActivity.class);
+            i.putExtra("lesson",1); // 1 for oloom
             startActivity(i);
         });
     }

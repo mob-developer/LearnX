@@ -26,8 +26,10 @@ public class LearnMovieActivity extends AppCompatActivity {
 
     private int thisStep;
     private int allStep;
+    private int lesson;
     private int courseId;
     private int subCourseId;
+
 
 
     @Override
@@ -35,13 +37,14 @@ public class LearnMovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn_movie);
 
+        lesson = getIntent().getIntExtra("lesson", -1);
         courseId = getIntent().getIntExtra("courseId", -1);
         subCourseId = getIntent().getIntExtra("subCourseId", -1);
         thisStep = getIntent().getIntExtra("step", 1);
         allStep = getIntent().getIntExtra("allStep", 1);
         int nextStepType;
         if (thisStep<allStep) {
-            nextStepType = getStepType(courseId, subCourseId, thisStep + 1);
+            nextStepType = getStepType(lesson, courseId, subCourseId, thisStep + 1);
         }else{
             nextStepType = -1;
         }
@@ -82,7 +85,7 @@ public class LearnMovieActivity extends AppCompatActivity {
         Toast.makeText(this, "c:" + courseId + " ,sc:" + subCourseId+"-"+thisStep, Toast.LENGTH_SHORT).show();
 //        initializePlayer();
     }
-    private int getStepType(int course,int subCourse,int step){
+    private int getStepType(int lesson, int course,int subCourse,int step){
         return 1;
     }
 
@@ -94,7 +97,7 @@ public class LearnMovieActivity extends AppCompatActivity {
         player.setPlayer(simpleExoPlayer);
 
         //Server.serverUrl + courseId + "/" + subCourseId + "/" + thisStep + ".mp4"
-        MediaItem mediaItem = MediaItem.fromUri(Server.serverUrl + courseId + "/" + subCourseId + "/" + thisStep + ".mp4");
+        MediaItem mediaItem = MediaItem.fromUri(Server.serverUrl + "learn/9/1/" + courseId + "/" + subCourseId + "/" + thisStep + ".mp4");
         simpleExoPlayer.setMediaItem(mediaItem);
 
         simpleExoPlayer.seekTo(currentWindow, playbackPosition);
