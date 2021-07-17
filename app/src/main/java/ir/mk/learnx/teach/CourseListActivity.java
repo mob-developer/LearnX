@@ -41,7 +41,7 @@ public class CourseListActivity extends AppCompatActivity {
 
 
 
-        CourseListAdapter courseListAdapter = new CourseListAdapter(coursesList);
+        CourseListAdapter courseListAdapter = new CourseListAdapter(coursesList, lesson);
         RecyclerView recyclerView = findViewById(R.id.course_list_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

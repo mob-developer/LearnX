@@ -27,12 +27,7 @@
             android:label="@string/title_activity_course_list"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.learnX.NoActionBar" />
-        <activity
-            android:name=".test.Quiz2"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".test.Quiz1"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".Home"
             android:screenOrientation="portrait" />

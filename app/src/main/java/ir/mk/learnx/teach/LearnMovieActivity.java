@@ -54,6 +54,7 @@ public class LearnMovieActivity extends AppCompatActivity {
             switch (nextStepType){
                 case -1:
                     Intent intent_1 = new Intent(this, EndSubCourse.class);
+                    intent_1.putExtra("lesson",lesson);
                     intent_1.putExtra("courseId",courseId);
                     intent_1.putExtra("subCourseId",subCourseId);
                     intent_1.putExtra("allStep",allStep);
@@ -61,6 +62,7 @@ public class LearnMovieActivity extends AppCompatActivity {
                     break;
                 case 0:
                     Intent intent0 = new Intent(this, LearnMovieActivity.class);
+                    intent0.putExtra("lesson",lesson);
                     intent0.putExtra("courseId",courseId);
                     intent0.putExtra("subCourseId",subCourseId);
                     intent0.putExtra("step",thisStep+1);
@@ -69,6 +71,7 @@ public class LearnMovieActivity extends AppCompatActivity {
                     break;
                 case 1:
                     Intent intent1 = new Intent(this, LearnQuizActivity.class);
+                    intent1.putExtra("lesson",lesson);
                     intent1.putExtra("courseId",courseId);
                     intent1.putExtra("subCourseId",subCourseId);
                     intent1.putExtra("step",thisStep+1);
@@ -82,8 +85,8 @@ public class LearnMovieActivity extends AppCompatActivity {
         });
 
 
-        Toast.makeText(this, "c:" + courseId + " ,sc:" + subCourseId+"-"+thisStep, Toast.LENGTH_SHORT).show();
-//        initializePlayer();
+        Toast.makeText(this, "course id:" + courseId + " ,subcourse-step:" + subCourseId+"-"+thisStep, Toast.LENGTH_SHORT).show();
+
     }
     private int getStepType(int lesson, int course,int subCourse,int step){
         return 1;
@@ -97,7 +100,7 @@ public class LearnMovieActivity extends AppCompatActivity {
         player.setPlayer(simpleExoPlayer);
 
         //Server.serverUrl + courseId + "/" + subCourseId + "/" + thisStep + ".mp4"
-        MediaItem mediaItem = MediaItem.fromUri(Server.serverUrl + "learn/9/1/" + courseId + "/" + subCourseId + "/" + thisStep + ".mp4");
+        MediaItem mediaItem = MediaItem.fromUri(Server.serverUrlLearn + lesson + "/" + courseId + "/" + subCourseId + "/" + thisStep + ".mp4");
         simpleExoPlayer.setMediaItem(mediaItem);
 
         simpleExoPlayer.seekTo(currentWindow, playbackPosition);
