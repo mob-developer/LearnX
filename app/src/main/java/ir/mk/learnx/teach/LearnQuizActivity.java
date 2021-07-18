@@ -11,7 +11,10 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.io.IOException;
 
@@ -42,6 +45,7 @@ public class LearnQuizActivity extends AppCompatActivity {
     private Handler handler;
     private static final int GET_QUESTIONS = 1;
     OkHttpClient client = new OkHttpClient();
+    private ImageView loadingImageView;
 
 
     @Override
@@ -65,6 +69,10 @@ public class LearnQuizActivity extends AppCompatActivity {
         constraintLayout.setOnClickListener(v -> {
             Toast.makeText(this, "aaa", Toast.LENGTH_SHORT).show();
         });
+
+        loadingImageView = findViewById(R.id.learn_quiz_loading);
+        Glide.with(this).load(R.mipmap.loading_gif).into(loadingImageView);
+
 
 
         handler = new Handler() {
