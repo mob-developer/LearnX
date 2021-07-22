@@ -14,7 +14,8 @@
         android:theme="@style/Theme.learnX"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".teach.EndSubCourse"></activity>
+        <activity android:name=".quiz.QuizListActivity"></activity>
+        <activity android:name=".teach.EndSubCourse" />
         <activity android:name=".teach.LearnQuizActivity" />
         <activity
             android:name=".teach.LearnMovieActivity"
@@ -27,7 +28,6 @@
             android:label="@string/title_activity_course_list"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.learnX.NoActionBar" />
-
         <activity
             android:name=".Home"
             android:screenOrientation="portrait" />
