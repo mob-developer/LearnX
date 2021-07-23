@@ -13,16 +13,27 @@ public class QuizListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private String[] data;
+    private String[] data = {
+            "ریاضی",
+            "هندسه",
+            "گسسته",
+            "فیزیک",
+            "شیمی",
+            "دینی",
+            "عربی"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_list);
-        recyclerView = (RecyclerView) findViewById(R.id.lesson_list);
+        recyclerView = findViewById(R.id.lesson_list);
+
         recyclerView.setHasFixedSize(true);
+
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
         adapter = new MyAdapter(data);
         recyclerView.setAdapter(adapter);
     }
