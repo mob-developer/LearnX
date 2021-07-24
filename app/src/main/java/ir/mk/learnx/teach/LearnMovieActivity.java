@@ -85,7 +85,7 @@ public class LearnMovieActivity extends AppCompatActivity {
         });
 
 
-        Toast.makeText(this, "course id:" + courseId + " ,subcourse-step:" + subCourseId+"-"+thisStep, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "course id:" + courseId + " ,subcourse-step:" + subCourseId+"-"+thisStep, Toast.LENGTH_SHORT).show();
 
     }
     private int getStepType(int lesson, int course,int subCourse,int step){
@@ -155,7 +155,7 @@ public class LearnMovieActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this, "a: "+playbackPosition, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "a: "+playbackPosition, Toast.LENGTH_SHORT).show();
     }
 
     private void releasePlayer() {
