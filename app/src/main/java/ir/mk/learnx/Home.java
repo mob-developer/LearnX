@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import ir.mk.learnx.loading.Loading2;
+import ir.mk.learnx.quiz.QuizListActivity;
 import ir.mk.learnx.teach.CourseListActivity;
 
 public class Home extends AppCompatActivity {
@@ -20,6 +21,12 @@ public class Home extends AppCompatActivity {
         testButton.setOnClickListener(v -> {
             Intent i = new Intent(Home.this, CourseListActivity.class);
             i.putExtra("lesson",1); // 1 for oloom
+            startActivity(i);
+        });
+
+        Button quizButton = findViewById(R.id.button_quiz);
+        quizButton.setOnClickListener(v->{
+            Intent i = new Intent(Home.this, QuizListActivity.class);
             startActivity(i);
         });
     }
