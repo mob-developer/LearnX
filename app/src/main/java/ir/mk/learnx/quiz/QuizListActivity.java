@@ -34,7 +34,9 @@ public class QuizListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new MyAdapter(data);
+        adapter = new QuizListAdapter(data);
         recyclerView.setAdapter(adapter);
+
+
     }
 }
