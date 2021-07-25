@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -14,7 +13,8 @@
         android:theme="@style/Theme.learnX"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".quiz.QuestionActivity"></activity>
+        <activity android:name=".teach.LoadingLearn" />
+        <activity android:name=".quiz.QuestionActivity" />
         <activity android:name=".quiz.QuizListActivity" />
         <activity android:name=".teach.EndSubCourse" />
         <activity

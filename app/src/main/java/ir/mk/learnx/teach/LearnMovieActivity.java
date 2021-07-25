@@ -3,7 +3,6 @@ package ir.mk.learnx.teach;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -101,7 +100,7 @@ public class LearnMovieActivity extends AppCompatActivity {
         player.setPlayer(simpleExoPlayer);
 
         //Server.serverUrl + courseId + "/" + subCourseId + "/" + thisStep + ".mp4"
-        MediaItem mediaItem = MediaItem.fromUri(Server.serverUrlLearn + lesson + "/" + courseId + "/" + subCourseId + "/" + thisStep + ".mp4");
+        MediaItem mediaItem = MediaItem.fromUri(Server.serverUrlLearnMovie + lesson + "/" + courseId + "/" + subCourseId + "/" + thisStep + ".mp4");
         simpleExoPlayer.setMediaItem(mediaItem);
 
         simpleExoPlayer.seekTo(currentWindow, playbackPosition);

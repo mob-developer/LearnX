@@ -139,7 +139,7 @@ public class QuestionActivity extends AppCompatActivity {
                 Message message = new Message();
                 message.what = GET_QUESTIONS;
                 try {
-                    question = QuestionActivity.this.run(Server.serverUrlQuiz + "?q=911121");
+                    question = QuestionActivity.this.run(Server.serverUrlQuiz + lesson + "" + courseId + "" + subCourseId + "" + thisStep + "1"); // 1 for easy - 2 for normal - 3 for hard
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
