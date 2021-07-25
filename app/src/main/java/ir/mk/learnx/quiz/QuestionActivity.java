@@ -33,7 +33,7 @@ public class QuestionActivity extends AppCompatActivity {
 
 
     private int thisStep;
-    private int allStep;
+    private String allStep;
     private int lesson;
     private int courseId;
     private int subCourseId;
@@ -64,10 +64,10 @@ public class QuestionActivity extends AppCompatActivity {
         courseId = getIntent().getIntExtra("courseId", -1);
         subCourseId = getIntent().getIntExtra("subCourseId", -1);
         thisStep = getIntent().getIntExtra("step", 1);
-        allStep = getIntent().getIntExtra("allStep", 1);
+        allStep = getIntent().getStringExtra("allStep");
         int nextStepType;
-        if (thisStep < allStep) {
-            nextStepType = getStepType(lesson, courseId, subCourseId, thisStep + 1);
+        if (thisStep < allStep.length()) {
+            nextStepType = getStepType(allStep, thisStep);
         } else {
             nextStepType = -1;
         }
@@ -150,8 +150,8 @@ public class QuestionActivity extends AppCompatActivity {
         threadGetQuestion.start();
     }
 
-    private int getStepType(int lesson, int course, int subCourse, int step) {
-        return 0;
+    private int getStepType(String allStep, int thisStep){
+        return Integer.parseInt(allStep.substring(thisStep,thisStep+1));
     }
 
     private void showQuestion() {

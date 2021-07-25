@@ -88,9 +88,7 @@ public class LoadingLearn extends AppCompatActivity {
     }
 
     private int getFirstStepType(String steps) {
-        Log.d("asd","        "+(steps.substring(0, 1)));
-        Log.d("asd","        "+steps);
-        return 0;
+        return Integer.parseInt(steps.substring(0, 1));
     }
 
     private void getAllSteps(int lesson, int courseId, int subCourseId) {
