@@ -12,4 +12,9 @@
     <string name="quiz_list_title">لیست کوییزها</string>
     <string name="end_course_message">تبریک! درسو تموم کردی!</string>
     <string name="end_course_button_text">ایول!</string>
+    <string name="next_question">بزن بریم</string>
+    <string name="report_question">گزارش سوال</string>
+    <string name="dislike_question">جالب نبود!</string>
+    <string name="like_question">حال کردم!</string>
+    <string name="loading_text">در حال دریافت اطلاعات...</string>
 </resources>

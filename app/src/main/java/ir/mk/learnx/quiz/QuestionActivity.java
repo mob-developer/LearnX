@@ -51,8 +51,10 @@ public class QuestionActivity extends AppCompatActivity {
     private static final int GET_QUESTIONS = 1;
     OkHttpClient client = new OkHttpClient();
     private ImageView loadingImageView;
+    private TextView loadingTextView;
 
 
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,20 +72,12 @@ public class QuestionActivity extends AppCompatActivity {
             nextStepType = -1;
         }
 
-        ConstraintLayout constraintLayout = findViewById(R.id.activity_question);
-        constraintLayout.setOnClickListener(v -> {
-            Toast.makeText(this, "view clicked!", Toast.LENGTH_SHORT).show();
-            if (ended && !ended2){
-                ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
-                constraintLayout1.setVisibility(View.VISIBLE);
-                ended2 = true;
-            }else if (ended && ended2){
-
-            }
-        });
 
         loadingImageView = findViewById(R.id.learn_quiz_loading);
         Glide.with(this).load(R.mipmap.loading_gif).into(loadingImageView);
+
+
+
 
 
 
@@ -105,31 +99,31 @@ public class QuestionActivity extends AppCompatActivity {
 
         Button goNext = findViewById(R.id.learn_quiz_go_next);
         goNext.setOnClickListener(v -> {
-            switch (nextStepType){
+            switch (nextStepType) {
                 case -1:
                     Intent intent_1 = new Intent(this, EndSubCourse.class);
-                    intent_1.putExtra("lesson",lesson);
-                    intent_1.putExtra("courseId",courseId);
-                    intent_1.putExtra("subCourseId",subCourseId);
-                    intent_1.putExtra("allStep",allStep);
+                    intent_1.putExtra("lesson", lesson);
+                    intent_1.putExtra("courseId", courseId);
+                    intent_1.putExtra("subCourseId", subCourseId);
+                    intent_1.putExtra("allStep", allStep);
                     startActivity(intent_1);
                     break;
                 case 0:
                     Intent intent0 = new Intent(this, LearnMovieActivity.class);
-                    intent0.putExtra("lesson",lesson);
-                    intent0.putExtra("courseId",courseId);
-                    intent0.putExtra("subCourseId",subCourseId);
-                    intent0.putExtra("step",thisStep+1);
-                    intent0.putExtra("allStep",allStep);
+                    intent0.putExtra("lesson", lesson);
+                    intent0.putExtra("courseId", courseId);
+                    intent0.putExtra("subCourseId", subCourseId);
+                    intent0.putExtra("step", thisStep + 1);
+                    intent0.putExtra("allStep", allStep);
                     startActivity(intent0);
                     break;
                 case 1:
                     Intent intent1 = new Intent(this, QuestionActivity.class);
-                    intent1.putExtra("lesson",lesson);
-                    intent1.putExtra("courseId",courseId);
-                    intent1.putExtra("subCourseId",subCourseId);
-                    intent1.putExtra("step",thisStep+1);
-                    intent1.putExtra("allStep",allStep);
+                    intent1.putExtra("lesson", lesson);
+                    intent1.putExtra("courseId", courseId);
+                    intent1.putExtra("subCourseId", subCourseId);
+                    intent1.putExtra("step", thisStep + 1);
+                    intent1.putExtra("allStep", allStep);
                     startActivity(intent1);
                     break;
                 default:
@@ -137,9 +131,6 @@ public class QuestionActivity extends AppCompatActivity {
                     break;
             }
         });
-
-
-
 
 
         Thread threadGetQuestion = new Thread(new Runnable() {
@@ -191,33 +182,45 @@ public class QuestionActivity extends AppCompatActivity {
         questionArrayList2.add(button3);
         questionArrayList2.add(button4);
 
+
+        ConstraintLayout constraintLayout = findViewById(R.id.activity_question);
         for (Button button : questionArrayList) {
             button.setOnClickListener(v -> {
-                if (!ended && button.getTag() == correctOption){
-                    button.setBackgroundColor(Color.rgb(0,255,0));
-                }else if (!ended){
-                    button.setBackgroundColor(Color.rgb(255,0,0));
+                if (!ended && button.getTag() == correctOption) {
+                    button.setBackgroundColor(Color.rgb(0, 255, 0));
+                } else if (!ended) {
+                    button.setBackgroundColor(Color.rgb(255, 0, 0));
 
                     for (Button b : questionArrayList2) {
-                        if (b.getTag() == correctOption){
-                            b.setBackgroundColor(Color.rgb(0,255,0));
+                        if (b.getTag() == correctOption) {
+                            b.setBackgroundColor(Color.rgb(0, 255, 0));
                         }
                     }
                 }
                 ended = true;
+
+                Toast.makeText(this, "view clicked!", Toast.LENGTH_SHORT).show();
+                if (ended && !ended2) {
+                    ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
+                    constraintLayout1.setVisibility(View.VISIBLE);
+                    ended2 = true;
+                } else if (ended && ended2) {
+
+                }
+
             });
         }
 
-        int random = (int)(Math.random()*4);
+        int random = (int) (Math.random() * 4);
         questionArrayList.get(random).setText(option1);
         questionArrayList.get(random).setTag(correctOption);
         questionArrayList.remove(random);
 
-        random = (int)(Math.random()*3);
+        random = (int) (Math.random() * 3);
         questionArrayList.get(random).setText(option2);
         questionArrayList.remove(random);
 
-        random = (int)(Math.random()*2);
+        random = (int) (Math.random() * 2);
         questionArrayList.get(random).setText(option3);
         questionArrayList.remove(random);
 
@@ -226,11 +229,11 @@ public class QuestionActivity extends AppCompatActivity {
         questionArrayList.remove(random);
 
 
-
         ImageView imageView = findViewById(R.id.learn_quiz_loading);
         imageView.setVisibility(View.GONE);
+        TextView textView = findViewById(R.id.learn_quiz_loading_text);
+        textView.setVisibility(View.GONE);
     }
-
 
 
     private String run(String url) throws IOException {

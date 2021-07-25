@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.learnX" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/sabz</item>
-        <item name="colorPrimaryVariant">@color/sabz</item>
+        <item name="colorPrimary">@color/main_green</item>
+        <item name="colorPrimaryVariant">@color/main_green</item>
         <!--        <item name="colorPrimaryVariant">@color/purple_700</item>-->
         <item name="colorOnPrimary">@color/back</item>
         <!-- Secondary brand color. -->
