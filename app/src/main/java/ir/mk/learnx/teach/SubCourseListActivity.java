@@ -6,15 +6,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import ir.mk.learnx.R;
-import ir.mk.learnx.model.CourseList;
-import ir.mk.learnx.model.CourseListAdapter;
 import ir.mk.learnx.model.SubCourseList;
-import ir.mk.learnx.model.SubCourseListAdapter;
+import ir.mk.learnx.adapters.SubCourseListAdapter;
 
 public class SubCourseListActivity extends AppCompatActivity {
 

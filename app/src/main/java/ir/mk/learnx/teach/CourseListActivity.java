@@ -9,7 +9,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 import ir.mk.learnx.R;
-import ir.mk.learnx.model.CourseListAdapter;
+import ir.mk.learnx.adapters.CourseListAdapter;
 import ir.mk.learnx.model.CourseList;
 
 public class CourseListActivity extends AppCompatActivity {

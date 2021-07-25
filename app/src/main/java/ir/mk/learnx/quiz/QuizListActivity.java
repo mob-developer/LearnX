@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import ir.mk.learnx.R;
+import ir.mk.learnx.adapters.QuizListAdapter;
 
 
 public class QuizListActivity extends AppCompatActivity {

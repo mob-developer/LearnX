@@ -17,4 +17,5 @@
     <string name="dislike_question">جالب نبود!</string>
     <string name="like_question">حال کردم!</string>
     <string name="loading_text">در حال دریافت اطلاعات...</string>
+    <string name="course_list_title">لیست دوره‌ها</string>
 </resources>

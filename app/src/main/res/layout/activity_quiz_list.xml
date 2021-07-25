@@ -4,26 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/teal_200"
     tools:context=".quiz.QuizListActivity">
+
     <TextView
         android:id="@+id/quiz_list_title_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/quiz_list_title"
-        android:padding="10dp"
         android:background="@color/teal_200"
-        android:textColor="@color/white"
         android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:padding="10dp"
+        android:text="@string/quiz_list_title"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lesson_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/white"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quiz_list_title_view"
-        android:background="@color/white">
+        app:layout_constraintTop_toBottomOf="@+id/quiz_list_title_view">
 
 
     </androidx.recyclerview.widget.RecyclerView>

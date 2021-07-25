@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lesson_card"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="5dp"
+    android:background="@drawable/button_shape"
+    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:targetApi="jelly_bean_mr1">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/ic_baseline_grading_24_green"
+        tools:ignore="ContentDescription,VectorDrawableCompat" />
+    <TextView
+        android:id="@+id/lesson_name"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="50dp"
+        android:textSize="15sp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:text="درس مثالی"
+        android:layout_gravity="center"
+        android:textAlignment="textStart"
+        android:textColor="#006057"
+        tools:ignore="RtlCompat,Suspicious0dp" />
+
+</LinearLayout>
