@@ -15,6 +15,7 @@
         tools:targetApi="m">
         <activity android:name=".teach.LoadingLearn" />
         <activity android:name=".quiz.QuestionActivity" />
+        <activity android:name=".teach.LearnQuizActivity" />
         <activity android:name=".quiz.QuizListActivity" />
         <activity android:name=".teach.EndSubCourse" />
         <activity
