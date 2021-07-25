@@ -14,6 +14,7 @@ import com.google.android.exoplayer2.util.Util;
 
 import ir.mk.learnx.R;
 import ir.mk.learnx.model.Server;
+import ir.mk.learnx.quiz.QuestionActivity;
 
 public class LearnMovieActivity extends AppCompatActivity {
 
@@ -70,7 +71,7 @@ public class LearnMovieActivity extends AppCompatActivity {
                     startActivity(intent0);
                     break;
                 case 1:
-                    Intent intent1 = new Intent(this, LearnQuizActivity.class);
+                    Intent intent1 = new Intent(this, QuestionActivity.class);
                     intent1.putExtra("lesson",lesson);
                     intent1.putExtra("courseId",courseId);
                     intent1.putExtra("subCourseId",subCourseId);
