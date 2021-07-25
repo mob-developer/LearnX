@@ -1,7 +1,4 @@
-package ir.mk.learnx.quiz;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+package ir.mk.learnx.teach;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -16,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.bumptech.glide.Glide;
 
 import java.io.IOException;
@@ -23,13 +23,11 @@ import java.util.ArrayList;
 
 import ir.mk.learnx.R;
 import ir.mk.learnx.model.Server;
-import ir.mk.learnx.teach.EndSubCourse;
-import ir.mk.learnx.teach.LearnMovieActivity;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class QuestionActivity extends AppCompatActivity {
+public class LearnQuizActivity extends AppCompatActivity {
 
 
     private int thisStep;
@@ -118,7 +116,7 @@ public class QuestionActivity extends AppCompatActivity {
                     startActivity(intent0);
                     break;
                 case 1:
-                    Intent intent1 = new Intent(this, QuestionActivity.class);
+                    Intent intent1 = new Intent(this, LearnQuizActivity.class);
                     intent1.putExtra("lesson", lesson);
                     intent1.putExtra("courseId", courseId);
                     intent1.putExtra("subCourseId", subCourseId);
@@ -139,7 +137,7 @@ public class QuestionActivity extends AppCompatActivity {
                 Message message = new Message();
                 message.what = GET_QUESTIONS;
                 try {
-                    question = QuestionActivity.this.run(Server.serverUrlQuiz + lesson + "" + courseId + "" + subCourseId + "" + thisStep + "1"); // 1 for easy - 2 for normal - 3 for hard
+                    question = LearnQuizActivity.this.run(Server.serverUrlQuiz + lesson + "" + courseId + "" + subCourseId + "" + thisStep + "1"); // 1 for easy - 2 for normal - 3 for hard
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -190,6 +188,7 @@ public class QuestionActivity extends AppCompatActivity {
                     button.setBackgroundColor(Color.rgb(0, 255, 0));
                 } else if (!ended) {
                     button.setBackgroundColor(Color.rgb(255, 0, 0));
+
                     for (Button b : questionArrayList2) {
                         if (b.getTag() == correctOption) {
                             b.setBackgroundColor(Color.rgb(0, 255, 0));
@@ -197,11 +196,16 @@ public class QuestionActivity extends AppCompatActivity {
                     }
                 }
                 ended = true;
+
+                Toast.makeText(this, "view clicked!", Toast.LENGTH_SHORT).show();
                 if (ended && !ended2) {
                     ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
                     constraintLayout1.setVisibility(View.VISIBLE);
                     ended2 = true;
+                } else if (ended && ended2) {
+
                 }
+
             });
         }
 

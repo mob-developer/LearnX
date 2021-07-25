@@ -2,8 +2,8 @@ package ir.mk.learnx.teach;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +26,7 @@ public class LearnMovieActivity extends AppCompatActivity {
     private long playbackPosition = 0;
 
     private int thisStep;
-    private int allStep;
+    private String allStep;
     private int lesson;
     private int courseId;
     private int subCourseId;
@@ -42,10 +42,10 @@ public class LearnMovieActivity extends AppCompatActivity {
         courseId = getIntent().getIntExtra("courseId", -1);
         subCourseId = getIntent().getIntExtra("subCourseId", -1);
         thisStep = getIntent().getIntExtra("step", 1);
-        allStep = getIntent().getIntExtra("allStep", 1);
+        allStep = getIntent().getStringExtra("allStep");
         int nextStepType;
-        if (thisStep<allStep) {
-            nextStepType = getStepType(lesson, courseId, subCourseId, thisStep + 1);
+        if (thisStep<allStep.length()) {
+            nextStepType = getStepType(allStep, thisStep);
         }else{
             nextStepType = -1;
         }
@@ -71,7 +71,7 @@ public class LearnMovieActivity extends AppCompatActivity {
                     startActivity(intent0);
                     break;
                 case 1:
-                    Intent intent1 = new Intent(this, QuestionActivity.class);
+                    Intent intent1 = new Intent(this, LearnQuizActivity.class);
                     intent1.putExtra("lesson",lesson);
                     intent1.putExtra("courseId",courseId);
                     intent1.putExtra("subCourseId",subCourseId);
@@ -89,8 +89,8 @@ public class LearnMovieActivity extends AppCompatActivity {
 //        Toast.makeText(this, "course id:" + courseId + " ,subcourse-step:" + subCourseId+"-"+thisStep, Toast.LENGTH_SHORT).show();
 
     }
-    private int getStepType(int lesson, int course,int subCourse,int step){
-        return 1;
+    private int getStepType(String allStep, int thisStep){
+        return Integer.parseInt(allStep.substring(thisStep,thisStep+1));
     }
 
 
@@ -101,7 +101,7 @@ public class LearnMovieActivity extends AppCompatActivity {
         player.setPlayer(simpleExoPlayer);
 
         //Server.serverUrl + courseId + "/" + subCourseId + "/" + thisStep + ".mp4"
-        MediaItem mediaItem = MediaItem.fromUri(Server.serverUrlLearn + lesson + "/" + courseId + "/" + subCourseId + "/" + thisStep + ".mp4");
+        MediaItem mediaItem = MediaItem.fromUri(Server.serverUrlLearnMovie + lesson + "/" + courseId + "/" + subCourseId + "/" + thisStep + ".mp4");
         simpleExoPlayer.setMediaItem(mediaItem);
 
         simpleExoPlayer.seekTo(currentWindow, playbackPosition);

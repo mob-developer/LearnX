@@ -30,7 +30,7 @@ public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.ViewHo
 
     }
 
-    @NonNull
+
     @NotNull
     @Override
     public QuizListAdapter.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
