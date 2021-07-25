@@ -197,7 +197,6 @@ public class LearnQuizActivity extends AppCompatActivity {
                 }
                 ended = true;
 
-                Toast.makeText(this, "view clicked!", Toast.LENGTH_SHORT).show();
                 if (ended && !ended2) {
                     ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
                     constraintLayout1.setVisibility(View.VISIBLE);

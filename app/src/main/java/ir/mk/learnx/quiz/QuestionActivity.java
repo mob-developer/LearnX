@@ -190,7 +190,6 @@ public class QuestionActivity extends AppCompatActivity {
                     button.setBackgroundColor(Color.rgb(0, 255, 0));
                 } else if (!ended) {
                     button.setBackgroundColor(Color.rgb(255, 0, 0));
-
                     for (Button b : questionArrayList2) {
                         if (b.getTag() == correctOption) {
                             b.setBackgroundColor(Color.rgb(0, 255, 0));
@@ -198,16 +197,11 @@ public class QuestionActivity extends AppCompatActivity {
                     }
                 }
                 ended = true;
-
-                Toast.makeText(this, "view clicked!", Toast.LENGTH_SHORT).show();
                 if (ended && !ended2) {
                     ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
                     constraintLayout1.setVisibility(View.VISIBLE);
                     ended2 = true;
-                } else if (ended && ended2) {
-
                 }
-
             });
         }
 

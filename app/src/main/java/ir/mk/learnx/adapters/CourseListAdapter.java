@@ -1,4 +1,4 @@
-package ir.mk.learnx.model;
+package ir.mk.learnx.adapters;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -6,24 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 import ir.mk.learnx.R;
-import ir.mk.learnx.teach.CourseListActivity;
+import ir.mk.learnx.model.CourseList;
 import ir.mk.learnx.teach.SubCourseListActivity;
 
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.ViewHolder> {
-        private ArrayList<CourseList> listdata;
+        private final ArrayList<CourseList> listData;
         private int lesson;
 
         // RecyclerView recyclerView;
-        public CourseListAdapter(ArrayList<CourseList> listdata, int lesson) {
-            this.listdata = listdata;
+        public CourseListAdapter(ArrayList<CourseList> listData, int lesson) {
+            this.listData = listData;
             this.lesson = lesson;
         }
 
@@ -37,7 +36,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            final CourseList current = listdata.get(position);
+            final CourseList current = listData.get(position);
             holder.bind(current.getTitle(),current.getProgress(),current.getImageId());
             holder.itemView.setOnClickListener(v -> {
 //                Toast.makeText(v.getContext(), ""+current.getTitle(), Toast.LENGTH_SHORT).show();
@@ -62,7 +61,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
 
         @Override
         public int getItemCount() {
-            return listdata.size();
+            return listData.size();
         }
 
         public static class ViewHolder extends RecyclerView.ViewHolder {
