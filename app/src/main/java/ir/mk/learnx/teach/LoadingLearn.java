@@ -73,7 +73,7 @@ public class LoadingLearn extends AppCompatActivity {
                 startActivity(intent0);
                 break;
             case 1:
-                Intent intent1 = new Intent(this, QuestionActivity.class);
+                Intent intent1 = new Intent(this, LearnQuizActivity.class);
                 intent1.putExtra("lesson", lesson);
                 intent1.putExtra("courseId",courseId);
                 intent1.putExtra("subCourseId", subCourseId);
