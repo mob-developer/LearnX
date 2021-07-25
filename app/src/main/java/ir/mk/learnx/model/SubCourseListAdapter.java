@@ -1,21 +1,19 @@
 package ir.mk.learnx.model;
 
-import android.app.Application;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 import ir.mk.learnx.R;
+import ir.mk.learnx.quiz.QuestionActivity;
 import ir.mk.learnx.teach.LearnMovieActivity;
-import ir.mk.learnx.teach.LearnQuizActivity;
 import ir.mk.learnx.teach.SubCourseListActivity;
 
 
@@ -54,7 +52,7 @@ public class SubCourseListAdapter extends RecyclerView.Adapter<SubCourseListAdap
                     v.getContext().startActivity(intent0);
                     break;
                 case 1:
-                    Intent intent1 = new Intent((SubCourseListActivity)v.getContext(), LearnQuizActivity.class);
+                    Intent intent1 = new Intent((SubCourseListActivity)v.getContext(), QuestionActivity.class);
                     intent1.putExtra("lesson",current.getLesson());
                     intent1.putExtra("courseId",current.getCourseId());
                     intent1.putExtra("subCourseId",current.getId());

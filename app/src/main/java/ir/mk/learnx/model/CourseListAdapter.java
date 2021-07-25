@@ -41,10 +41,10 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Vi
             holder.bind(current.getTitle(),current.getProgress(),current.getImageId());
             holder.itemView.setOnClickListener(v -> {
 //                Toast.makeText(v.getContext(), ""+current.getTitle(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent((CourseListActivity)v.getContext(), SubCourseListActivity.class);
+                Intent intent = new Intent(v.getContext(), SubCourseListActivity.class);
                 intent.putExtra("courseId",current.getId());
                 intent.putExtra("lesson",lesson);
-                ((CourseListActivity)v.getContext()).startActivity(intent);
+                v.getContext().startActivity(intent);
             });
 //            holder.deleteItemView.setOnClickListener(new View.OnClickListener() {
 //                @Override
