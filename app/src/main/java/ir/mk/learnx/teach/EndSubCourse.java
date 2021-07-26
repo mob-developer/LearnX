@@ -32,6 +32,7 @@ public class EndSubCourse extends AppCompatActivity {
             intent.putExtra("lesson",lesson);
             intent.putExtra("courseId",courseId);
             startActivity(intent);
+            finish();
         });
     }
 }
