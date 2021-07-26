@@ -8,10 +8,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import ir.mk.learnx.adapters.HomeCourseListAdapter;
+import ir.mk.learnx.model.Account;
 import ir.mk.learnx.model.CourseList;
 import ir.mk.learnx.model.Server;
 import ir.mk.learnx.quiz.QuizListActivity;
@@ -56,8 +58,9 @@ public class Home extends AppCompatActivity {
             editor.apply();
             iq = 100;
         }
-        //TODO show iq
-
+        Account.getLoggedInAccount().setScore(iq);
+        TextView textView = findViewById(R.id.score);
+        textView.setText(iq);
     }
 
 

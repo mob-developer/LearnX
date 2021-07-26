@@ -27,11 +27,12 @@ public class SignUpActivity extends AppCompatActivity {
         button.setOnClickListener(v -> {
             if (!usernameField.getText().toString().isEmpty() && !emailField.getText().toString().isEmpty() &&
                     !passwordField.getText().toString().isEmpty() && !firstNameField.getText().toString().isEmpty() &&
-                    !lastNameField.getText().toString().isEmpty()){
-                new Account(firstNameField.getText().toString(), lastNameField.getText().toString(), 0, 0, usernameField.getText().toString(), passwordField.getText().toString(), emailField.getText().toString());
+                    !lastNameField.getText().toString().isEmpty()) {
+                new Account(firstNameField.getText().toString(), lastNameField.getText().toString(),
+                        0, 0, usernameField.getText().toString(),
+                        passwordField.getText().toString(), emailField.getText().toString(), 0);
                 Toast.makeText(this, "حساب کاربری با موفقیت ساخته شد", Toast.LENGTH_LONG).show();
-            }
-            else{
+            } else {
                 Toast.makeText(this, "خطایی رخ داده است دوباره تلاش کنید", Toast.LENGTH_LONG).show();
             }
 
@@ -39,6 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onBackPressed() {
         Intent i = new Intent(SignUpActivity.this, LandingPageActivity.class);

@@ -13,8 +13,9 @@ public class Account {
     private final String username;
     private final String password;
     private final String email;
+    private int score;
 
-    public Account(String firstName, String lastName, int age, int phoneNumber, String username, String password, String email) {
+    public Account(String firstName, String lastName, int age, int phoneNumber, String username, String password, String email, int score) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -22,6 +23,7 @@ public class Account {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.score = score;
         allAccount.add(this);
     }
 
@@ -53,6 +55,8 @@ public class Account {
         return phoneNumber;
     }
 
+
+
     public static String loginUser(String username, String password) {
         for (Account account : allAccount) {
             if (account.username.equals(username)) {
@@ -67,5 +71,17 @@ public class Account {
         return "invalid username";
 
 
+    }
+
+    public static void setLoggedInAccount(Account loggedInAccount) {
+        Account.loggedInAccount = loggedInAccount;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public static Account getLoggedInAccount() {
+        return loggedInAccount;
     }
 }
