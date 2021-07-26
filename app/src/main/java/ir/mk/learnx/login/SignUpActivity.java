@@ -42,5 +42,6 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i = new Intent(SignUpActivity.this, LandingPageActivity.class);
+        startActivity(i);
     }
 }

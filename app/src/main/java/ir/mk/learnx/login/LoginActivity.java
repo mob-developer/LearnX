@@ -54,5 +54,6 @@ enter.setEnabled(true);
     @Override
     public void onBackPressed() {
         Intent i = new Intent(LoginActivity.this, LandingPageActivity.class);
+        startActivity(i);
     }
 }
