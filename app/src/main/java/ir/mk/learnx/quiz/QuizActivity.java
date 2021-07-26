@@ -56,6 +56,7 @@ public class QuizActivity extends AppCompatActivity {
     OkHttpClient client = new OkHttpClient();
     private ImageView loadingImageView;
     private int iq;
+    private TextView iqTextView;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint({"HandlerLeak", "SetTextI18n"})
@@ -66,7 +67,7 @@ public class QuizActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences(Server.MY_PREFS_NAME, MODE_PRIVATE);
         iq = sharedPreferences.getInt("iq", 0);
-        TextView iqTextView = findViewById(R.id.iq_textView);
+        iqTextView = findViewById(R.id.iq_textView);
         iqTextView.setText("IQ " + iq);
 
         lesson = getIntent().getIntExtra("lesson", -1);
@@ -188,10 +189,22 @@ public class QuizActivity extends AppCompatActivity {
             button.setVisibility(View.VISIBLE);
             button.setOnClickListener(v -> {
                 if (!ended && button.getTag() == correctOption) {
-                    button.setBackgroundColor(Color.rgb(0, 255, 0));
-                    SharedPreferences.Editor editor = getSharedPreferences(Server.MY_PREFS_NAME, MODE_PRIVATE).edit();
                     iq += 5;
-                    editor.putInt("iq",iq);
+                    button.setBackgroundColor(Color.rgb(0, 255, 0));
+                    TextView iqAddTextView = findViewById(R.id.addIQ);
+                    iqAddTextView.setVisibility(View.VISIBLE);
+                    Log.d("asdasd", "" + iqAddTextView.getHeight());
+                    iqAddTextView.animate().setDuration(1000).translationY(-(int) constraintLayout.getHeight() / 2 + 100);
+                    iqAddTextView.animate().setDuration(1000).translationX((int) constraintLayout.getWidth() / 2 - 100);
+                    iqAddTextView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            iqAddTextView.setVisibility(View.GONE);
+                            iqTextView.setText("IQ "+iq);
+                        }
+                    }, 980);
+                    SharedPreferences.Editor editor = getSharedPreferences(Server.MY_PREFS_NAME, MODE_PRIVATE).edit();
+                    editor.putInt("iq", iq);
                     editor.apply();
                 } else if (!ended) {
                     button.setBackgroundColor(Color.rgb(255, 0, 0));
