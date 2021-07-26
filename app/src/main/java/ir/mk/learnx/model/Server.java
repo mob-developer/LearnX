@@ -3,6 +3,7 @@ package ir.mk.learnx.model;
 public class Server {
     //    public static String serverUrl = "http://192.168.43.191:80/learnx/";
     public static final int GRADE = 9;
+    public static final String MY_PREFS_NAME = "MyPrefsFile";
 
     public static final String SERVER_URL = "http://learnx.himino.ir/";
     public static final String SERVER_URL_LEARN_MOVIE = SERVER_URL + "learn/" + GRADE + "/";
