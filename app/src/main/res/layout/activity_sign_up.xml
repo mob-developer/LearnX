@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="40dp"
     tools:context=".login.SignUpActivity">
 
     <ImageView
         android:id="@+id/sign_up_profile_picture"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/ic_baseline_account_circle_24"
+        android:background="@drawable/ic_baseline_account_circle_24_green"
         app:layout_constraintBottom_toTopOf="@+id/sign_up_email_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +25,7 @@
         android:layout_marginEnd="24dp"
         android:hint="آدرس پست الکترونیکی"
         android:inputType="textEmailAddress"
+        android:imeOptions="actionNext"
         android:selectAllOnFocus="true"
         android:textDirection="rtl"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,17 +38,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
+        android:gravity="end"
         android:hint="@string/login_pass_field"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         android:textDirection="rtl"
-        android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_email_field"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_username"
         tools:targetApi="jelly_bean_mr1" />
 
     <EditText
@@ -56,7 +57,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:hint="نام خانوادگی"
-        android:imeOptions="actionDone"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailSubject"
         android:selectAllOnFocus="true"
         android:textDirection="rtl"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,12 +73,13 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:hint="نام"
-        android:imeOptions="actionDone"
+        android:inputType="textEmailSubject"
+        android:imeOptions="actionNext"
         android:selectAllOnFocus="true"
         android:textDirection="rtl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_password_field"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_email_field"
         tools:targetApi="jelly_bean_mr1" />
 
     <EditText
@@ -86,7 +89,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:hint="شناسه کاربری"
-        android:imeOptions="actionDone"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailSubject"
         android:selectAllOnFocus="true"
         android:textDirection="rtl"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,14 +105,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
         android:layout_marginBottom="64dp"
         android:enabled="true"
-        android:text="ثبت‌نام"
+        android:textSize="20sp"
+        android:text="ثبت نام"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        android:layout_marginLeft="48dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

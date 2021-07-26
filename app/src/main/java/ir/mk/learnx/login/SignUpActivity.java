@@ -12,13 +12,14 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import ir.mk.learnx.Home;
 import ir.mk.learnx.R;
 import ir.mk.learnx.model.Account;
 
 public class SignUpActivity extends AppCompatActivity {
     private static final int SELECT_PICTURE = 100;
     private static ImageView imageView;
-    private Uri profilePictureUri;
+    private Uri profilePictureUri = Uri.EMPTY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +39,16 @@ public class SignUpActivity extends AppCompatActivity {
 
         button.setOnClickListener(v -> {
             if (!usernameField.getText().toString().isEmpty() && !emailField.getText().toString().isEmpty() &&
-                    !passwordField.getText().toString().isEmpty() && !firstNameField.getText().toString().isEmpty() &&
-                    !lastNameField.getText().toString().isEmpty()) {
-                new Account(firstNameField.getText().toString(), lastNameField.getText().toString(),
+                    !getStringFromField(passwordField).isEmpty() && !firstNameField.getText().toString().isEmpty() &&
+                    !getStringFromField(lastNameField).isEmpty()) {
+                Account account = new Account(firstNameField.getText().toString(), lastNameField.getText().toString(),
                         0, 0, usernameField.getText().toString(),
                         passwordField.getText().toString(), emailField.getText().toString(), 0,
                 profilePictureUri);
+                Account.loginUser(getStringFromField(usernameField), getStringFromField(passwordField));
                 Toast.makeText(this, "حساب کاربری با موفقیت ساخته شد", Toast.LENGTH_LONG).show();
-                Intent i = new Intent(SignUpActivity.this, LandingPageActivity.class);
+                Intent i = new Intent(SignUpActivity.this, Home.class);
+                startActivity(i);
             } else {
                 Toast.makeText(this, "خطایی رخ داده است دوباره تلاش کنید", Toast.LENGTH_LONG).show();
             }
@@ -53,6 +56,10 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public String getStringFromField(EditText editText){
+        return editText.getText().toString();
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -52,6 +53,8 @@ public class Home extends AppCompatActivity {
         recyclerView.setAdapter(homeCourseListAdapter);
 
         Button exit = findViewById(R.id.exit);
+        if(!Account.getLoggedInAccount().getUsername().equals(""))
+            exit.setVisibility(View.VISIBLE);
         exit.setOnClickListener(v -> {
             Account.setLoggedInAccount(null);
             Intent i = new Intent(Home.this, LandingPageActivity.class);
@@ -89,7 +92,7 @@ public class Home extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (Account.getLoggedInAccount() == null) {
+        if (Account.getLoggedInAccount().getUsername().equals("")) {
             Intent i = new Intent(Home.this, LandingPageActivity.class);
             startActivity(i);
         } else {

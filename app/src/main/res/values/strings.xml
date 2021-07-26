@@ -25,7 +25,7 @@
     <string name="landing_page_sign_up_button">ثبت‌نام</string>
     <string name="login_pass_field">رمز عبور</string>
     <string name="login_button_login_page">ورود</string>
-    <string name="login_page_username_field">شناسه‌کابری یا ایمیل</string>
+    <string name="login_page_username_field">نام کاربری یا ایمیل</string>
     <string name="get_data_from_server">در حال ارتباط با سرور</string>
 
 </resources>
