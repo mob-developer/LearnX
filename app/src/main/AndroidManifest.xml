@@ -17,6 +17,7 @@
         <activity android:name=".teach.LearnQuizActivity" />
         <activity android:name=".quiz.QuizListActivity" />
         <activity android:name=".quiz.QuizActivity" />
+        <activity android:name=".quiz.EndQuiz" />
         <activity android:name=".teach.EndSubCourse" />
         <activity
             android:name=".teach.LearnMovieActivity"

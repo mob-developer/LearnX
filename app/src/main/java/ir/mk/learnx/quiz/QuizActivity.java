@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,8 +12,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -25,6 +28,7 @@ import java.util.ArrayList;
 import ir.mk.learnx.Home;
 import ir.mk.learnx.R;
 import ir.mk.learnx.model.Server;
+import okhttp3.CacheControl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -33,7 +37,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
     private int thisStep;
-    private String allStep;
+    private int allStep;
     private int lesson;
 
     private String question;
@@ -51,15 +55,21 @@ public class QuizActivity extends AppCompatActivity {
     private ImageView loadingImageView;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_learn_quiz);
+        setContentView(R.layout.activity_quiz);
 
         lesson = getIntent().getIntExtra("lesson", -1);
         thisStep = getIntent().getIntExtra("step", 1);
-        allStep = getIntent().getStringExtra("allStep");
+        allStep = getIntent().getIntExtra("allStep", 1);
+
+        ProgressBar progressBar = findViewById(R.id.progressBarQuiz);
+        progressBar.setMax(allStep);
+        progressBar.setProgress(thisStep, true);
+
 
         loadingImageView = findViewById(R.id.learn_quiz_loading);
         Glide.with(this).load(R.mipmap.loading_gif).into(loadingImageView);
@@ -83,11 +93,16 @@ public class QuizActivity extends AppCompatActivity {
 
         Button goNext = findViewById(R.id.learn_quiz_go_next);
         goNext.setOnClickListener(v -> {
-            Intent intent = new Intent(this, QuizActivity.class);
-            intent.putExtra("lesson", lesson);
-            intent.putExtra("step", thisStep + 1);
-            intent.putExtra("allStep", allStep);
-            startActivity(intent);
+            if (thisStep < allStep) {
+                Intent intent = new Intent(this, QuizActivity.class);
+                intent.putExtra("lesson", lesson);
+                intent.putExtra("step", thisStep + 1);
+                intent.putExtra("allStep", allStep);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this,EndQuiz.class);
+                startActivity(intent);
+            }
         });
 
 
@@ -107,7 +122,6 @@ public class QuizActivity extends AppCompatActivity {
         });
         threadGetQuestion.start();
     }
-
 
 
     private void showQuestion() {
@@ -200,6 +214,10 @@ public class QuizActivity extends AppCompatActivity {
 
     private String run(String url) throws IOException {
         Request request = new Request.Builder()
+                .cacheControl(new CacheControl
+                        .Builder()
+                        .noCache()
+                        .build())
                 .url(url)
                 .build();
 
