@@ -14,14 +14,15 @@ import java.util.ArrayList;
 
 import ir.mk.learnx.R;
 import ir.mk.learnx.model.CourseList;
+import ir.mk.learnx.quiz.QuizActivity;
 import ir.mk.learnx.teach.SubCourseListActivity;
 
 
-public class Quiz2ListAdapter extends RecyclerView.Adapter<Quiz2ListAdapter.ViewHolder> {
+public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.ViewHolder> {
         private final ArrayList<CourseList> listData;
 
 
-        public Quiz2ListAdapter(ArrayList<CourseList> listData) {
+        public QuizListAdapter(ArrayList<CourseList> listData) {
             this.listData = listData;
         }
 
@@ -38,9 +39,10 @@ public class Quiz2ListAdapter extends RecyclerView.Adapter<Quiz2ListAdapter.View
             final CourseList current = listData.get(position);
             holder.bind(current.getTitle());
             holder.itemView.setOnClickListener(v -> {
-//                Toast.makeText(v.getContext(), ""+current.getTitle(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(v.getContext(), SubCourseListActivity.class);
-                intent.putExtra("courseId",current.getId());
+                Intent intent = new Intent(v.getContext(), QuizActivity.class);
+                intent.putExtra("lesson",current.getId());
+                intent.putExtra("step",1);
+                intent.putExtra("allStep",7);
                 v.getContext().startActivity(intent);
             });
 

@@ -58,7 +58,7 @@ public class LearnQuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question);
+        setContentView(R.layout.activity_learn_quiz);
 
         lesson = getIntent().getIntExtra("lesson", -1);
         courseId = getIntent().getIntExtra("courseId", -1);
@@ -139,7 +139,7 @@ public class LearnQuizActivity extends AppCompatActivity {
                 Message message = new Message();
                 message.what = GET_QUESTIONS;
                 try {
-                    question = LearnQuizActivity.this.run(Server.serverUrlQuiz + lesson + "" + courseId + "" + subCourseId + "" + thisStep + "1"); // 1 for easy - 2 for normal - 3 for hard
+                    question = LearnQuizActivity.this.run(Server.SERVER_URL_LEARN_QUIZ + lesson + "" + courseId + "" + subCourseId + "" + thisStep + "1"); // 1 for easy - 2 for normal - 3 for hard
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

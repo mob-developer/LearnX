@@ -16,7 +16,6 @@ import java.io.IOException;
 
 import ir.mk.learnx.R;
 import ir.mk.learnx.model.Server;
-import ir.mk.learnx.quiz.QuestionActivity;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -104,7 +103,7 @@ public class LoadingLearn extends AppCompatActivity {
                 Message message = new Message();
                 message.what = GET_STEPS;
                 try {
-                    steps = LoadingLearn.this.run(Server.serverUrlSteps + lesson + "" + courseId + "" + subCourseId);
+                    steps = LoadingLearn.this.run(Server.SERVER_URL_STEPS + lesson + "" + courseId + "" + subCourseId);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
