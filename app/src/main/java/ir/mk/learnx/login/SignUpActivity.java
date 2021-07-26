@@ -2,6 +2,7 @@ package ir.mk.learnx.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,5 +38,9 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
+    }
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(SignUpActivity.this, LandingPageActivity.class);
     }
 }
