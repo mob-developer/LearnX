@@ -1,10 +1,11 @@
 package ir.mk.learnx.teach;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.exoplayer2.MediaItem;
@@ -14,7 +15,6 @@ import com.google.android.exoplayer2.util.Util;
 
 import ir.mk.learnx.R;
 import ir.mk.learnx.model.Server;
-import ir.mk.learnx.quiz.QuestionActivity;
 
 public class LearnMovieActivity extends AppCompatActivity {
 
@@ -101,7 +101,7 @@ public class LearnMovieActivity extends AppCompatActivity {
         player.setPlayer(simpleExoPlayer);
 
         //Server.serverUrl + courseId + "/" + subCourseId + "/" + thisStep + ".mp4"
-        MediaItem mediaItem = MediaItem.fromUri(Server.serverUrlLearnMovie + lesson + "/" + courseId + "/" + subCourseId + "/" + thisStep + ".mp4");
+        MediaItem mediaItem = MediaItem.fromUri(Server.SERVER_URL_LEARN_MOVIE + lesson + "/" + courseId + "/" + subCourseId + "/" + thisStep + ".mp4");
         simpleExoPlayer.setMediaItem(mediaItem);
 
         simpleExoPlayer.seekTo(currentWindow, playbackPosition);
@@ -173,6 +173,23 @@ public class LearnMovieActivity extends AppCompatActivity {
 
 
 
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("خروج")
+                .setMessage("آیا می خواهید از تدریس خارج شوید؟")
+                .setNegativeButton("خیر", null)
+                .setPositiveButton("بله", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(LearnMovieActivity.this,SubCourseListActivity.class);
+                        intent.putExtra("lesson",lesson);
+                        intent.putExtra("courseId",courseId);
+                        LearnMovieActivity.this.startActivity(intent);
+                        finish();
+                    }
+                }).create().show();
+    }
 
 
 

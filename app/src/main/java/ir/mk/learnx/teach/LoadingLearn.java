@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import java.io.IOException;
 
 import ir.mk.learnx.R;
 import ir.mk.learnx.model.Server;
-import ir.mk.learnx.quiz.QuestionActivity;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -38,6 +40,9 @@ public class LoadingLearn extends AppCompatActivity {
         lesson = getIntent().getIntExtra("lesson", -1);
         courseId = getIntent().getIntExtra("courseId", -1);
         subCourseId = getIntent().getIntExtra("subCourseId", -1);
+
+        ImageView loadingImageView = findViewById(R.id.loading_learn_gif);
+        Glide.with(this).load(R.mipmap.loading_gif).into(loadingImageView);
 
         getAllSteps(lesson, courseId, subCourseId);
 
@@ -98,7 +103,7 @@ public class LoadingLearn extends AppCompatActivity {
                 Message message = new Message();
                 message.what = GET_STEPS;
                 try {
-                    steps = LoadingLearn.this.run(Server.serverUrlSteps + lesson + "" + courseId + "" + subCourseId);
+                    steps = LoadingLearn.this.run(Server.SERVER_URL_STEPS + lesson + "" + courseId + "" + subCourseId);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -117,5 +122,14 @@ public class LoadingLearn extends AppCompatActivity {
         try (Response response = client.newCall(request).execute()) {
             return response.body().string();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this,SubCourseListActivity.class);
+        intent.putExtra("lesson",lesson);
+        intent.putExtra("courseId",courseId);
+        startActivity(intent);
+        finish();
     }
 }

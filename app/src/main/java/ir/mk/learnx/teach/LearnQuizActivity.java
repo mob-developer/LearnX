@@ -1,6 +1,7 @@
 package ir.mk.learnx.teach;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -56,7 +58,7 @@ public class LearnQuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question);
+        setContentView(R.layout.activity_learn_quiz);
 
         lesson = getIntent().getIntExtra("lesson", -1);
         courseId = getIntent().getIntExtra("courseId", -1);
@@ -137,7 +139,7 @@ public class LearnQuizActivity extends AppCompatActivity {
                 Message message = new Message();
                 message.what = GET_QUESTIONS;
                 try {
-                    question = LearnQuizActivity.this.run(Server.serverUrlQuiz + lesson + "" + courseId + "" + subCourseId + "" + thisStep + "1"); // 1 for easy - 2 for normal - 3 for hard
+                    question = LearnQuizActivity.this.run(Server.SERVER_URL_LEARN_QUIZ + lesson + "" + courseId + "" + subCourseId + "" + thisStep + "1"); // 1 for easy - 2 for normal - 3 for hard
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -182,7 +184,17 @@ public class LearnQuizActivity extends AppCompatActivity {
 
 
         ConstraintLayout constraintLayout = findViewById(R.id.activity_question);
+        constraintLayout.setOnClickListener(v -> {
+            Toast.makeText(this, "view clicked!", Toast.LENGTH_SHORT).show();
+            if (ended && !ended2){
+                ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
+                constraintLayout1.setVisibility(View.VISIBLE);
+                ended2 = true;
+            }
+        });
+
         for (Button button : questionArrayList) {
+            button.setVisibility(View.VISIBLE);
             button.setOnClickListener(v -> {
                 if (!ended && button.getTag() == correctOption) {
                     button.setBackgroundColor(Color.rgb(0, 255, 0));
@@ -195,15 +207,13 @@ public class LearnQuizActivity extends AppCompatActivity {
                         }
                     }
                 }
-                ended = true;
-
-                if (ended && !ended2) {
+                if (ended && !ended2){
                     ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
                     constraintLayout1.setVisibility(View.VISIBLE);
                     ended2 = true;
-                } else if (ended && ended2) {
-
                 }
+                ended = true;
+
 
             });
         }
@@ -243,5 +253,24 @@ public class LearnQuizActivity extends AppCompatActivity {
         }
     }
 
+
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("خروج")
+                .setMessage("آیا می خواهید از تدریس خارج شوید؟")
+                .setNegativeButton("خیر", null)
+                .setPositiveButton("بله", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(LearnQuizActivity.this,SubCourseListActivity.class);
+                        intent.putExtra("lesson",lesson);
+                        intent.putExtra("courseId",courseId);
+                        LearnQuizActivity.this.startActivity(intent);
+                        finish();
+                    }
+                }).create().show();
+    }
 
 }

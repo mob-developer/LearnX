@@ -16,9 +16,9 @@
         <activity android:name=".login.SignUpActivity"></activity>
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".teach.LoadingLearn" />
-        <activity android:name=".quiz.QuestionActivity" />
         <activity android:name=".teach.LearnQuizActivity" />
         <activity android:name=".quiz.QuizListActivity" />
+        <activity android:name=".quiz.QuizActivity" />
         <activity android:name=".teach.EndSubCourse" />
         <activity
             android:name=".teach.LearnMovieActivity"

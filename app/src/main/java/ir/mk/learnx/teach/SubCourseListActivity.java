@@ -84,6 +84,9 @@ public class SubCourseListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Intent intent = new Intent(this,CourseListActivity.class);
+        intent.putExtra("lesson",lesson);
+        startActivity(intent);
+        finish();
     }
 }

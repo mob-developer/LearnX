@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import ir.mk.learnx.R;
-import ir.mk.learnx.quiz.QuestionActivity;
 
 public class EndSubCourse extends AppCompatActivity {
     private int thisStep;

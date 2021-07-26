@@ -10,13 +10,13 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="quiz_list_title">لیست کوییزها</string>
-    <string name="end_course_message">تبریک! درسو تموم کردی!</string>
+    <string name="end_course_message">تبریک! \n این بخش رو تموم کردی!</string>
     <string name="end_course_button_text">ایول!</string>
     <string name="next_question">بزن بریم</string>
     <string name="report_question">گزارش سوال</string>
     <string name="dislike_question">جالب نبود!</string>
     <string name="like_question">حال کردم!</string>
-    <string name="loading_text">در حال دریافت اطلاعات...</string>
+    <string name="loading_text">در حال دریافت اطلاعات ...</string>
     <string name="course_list_title">لیست دوره‌ها</string>
     <string name="sub_course_list_title_text">لیست سرفصل‌ها</string>
     <string name="landing_page_description">پلتفرم آموزشی رایگان</string>
@@ -26,4 +26,6 @@
     <string name="login_pass_field">رمز عبور</string>
     <string name="login_button_login_page">ورود</string>
     <string name="login_page_username_field">شناسه‌کابری یا ایمیل</string>
+    <string name="get_data_from_server">در حال ارتباط با سرور</string>
+
 </resources>

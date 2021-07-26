@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
 
+import ir.mk.learnx.Home;
 import ir.mk.learnx.R;
 import ir.mk.learnx.adapters.CourseListAdapter;
 import ir.mk.learnx.model.CourseList;
@@ -47,5 +49,11 @@ public class CourseListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(courseListAdapter);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,Home.class));
+        finish();
     }
 }

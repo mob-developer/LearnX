@@ -1,9 +1,7 @@
 package ir.mk.learnx.quiz;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,29 +12,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import ir.mk.learnx.Home;
 import ir.mk.learnx.R;
 import ir.mk.learnx.model.Server;
-import ir.mk.learnx.teach.EndSubCourse;
-import ir.mk.learnx.teach.LearnMovieActivity;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class QuestionActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity {
 
 
     private int thisStep;
     private String allStep;
     private int lesson;
-    private int courseId;
-    private int subCourseId;
 
     private String question;
     private String option1;
@@ -51,34 +49,20 @@ public class QuestionActivity extends AppCompatActivity {
     private static final int GET_QUESTIONS = 1;
     OkHttpClient client = new OkHttpClient();
     private ImageView loadingImageView;
-    private TextView loadingTextView;
 
 
     @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question);
+        setContentView(R.layout.activity_learn_quiz);
 
         lesson = getIntent().getIntExtra("lesson", -1);
-        courseId = getIntent().getIntExtra("courseId", -1);
-        subCourseId = getIntent().getIntExtra("subCourseId", -1);
         thisStep = getIntent().getIntExtra("step", 1);
         allStep = getIntent().getStringExtra("allStep");
-        int nextStepType;
-        if (thisStep < allStep.length()) {
-            nextStepType = getStepType(allStep, thisStep);
-        } else {
-            nextStepType = -1;
-        }
-
 
         loadingImageView = findViewById(R.id.learn_quiz_loading);
         Glide.with(this).load(R.mipmap.loading_gif).into(loadingImageView);
-
-
-
-
 
 
         handler = new Handler() {
@@ -99,37 +83,11 @@ public class QuestionActivity extends AppCompatActivity {
 
         Button goNext = findViewById(R.id.learn_quiz_go_next);
         goNext.setOnClickListener(v -> {
-            switch (nextStepType) {
-                case -1:
-                    Intent intent_1 = new Intent(this, EndSubCourse.class);
-                    intent_1.putExtra("lesson", lesson);
-                    intent_1.putExtra("courseId", courseId);
-                    intent_1.putExtra("subCourseId", subCourseId);
-                    intent_1.putExtra("allStep", allStep);
-                    startActivity(intent_1);
-                    break;
-                case 0:
-                    Intent intent0 = new Intent(this, LearnMovieActivity.class);
-                    intent0.putExtra("lesson", lesson);
-                    intent0.putExtra("courseId", courseId);
-                    intent0.putExtra("subCourseId", subCourseId);
-                    intent0.putExtra("step", thisStep + 1);
-                    intent0.putExtra("allStep", allStep);
-                    startActivity(intent0);
-                    break;
-                case 1:
-                    Intent intent1 = new Intent(this, QuestionActivity.class);
-                    intent1.putExtra("lesson", lesson);
-                    intent1.putExtra("courseId", courseId);
-                    intent1.putExtra("subCourseId", subCourseId);
-                    intent1.putExtra("step", thisStep + 1);
-                    intent1.putExtra("allStep", allStep);
-                    startActivity(intent1);
-                    break;
-                default:
-
-                    break;
-            }
+            Intent intent = new Intent(this, QuizActivity.class);
+            intent.putExtra("lesson", lesson);
+            intent.putExtra("step", thisStep + 1);
+            intent.putExtra("allStep", allStep);
+            startActivity(intent);
         });
 
 
@@ -139,7 +97,7 @@ public class QuestionActivity extends AppCompatActivity {
                 Message message = new Message();
                 message.what = GET_QUESTIONS;
                 try {
-                    question = QuestionActivity.this.run(Server.serverUrlQuiz + lesson + "" + courseId + "" + subCourseId + "" + thisStep + "1"); // 1 for easy - 2 for normal - 3 for hard
+                    question = QuizActivity.this.run(Server.SERVER_URL_QUIZ + lesson);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -150,9 +108,7 @@ public class QuestionActivity extends AppCompatActivity {
         threadGetQuestion.start();
     }
 
-    private int getStepType(String allStep, int thisStep){
-        return Integer.parseInt(allStep.substring(thisStep,thisStep+1));
-    }
+
 
     private void showQuestion() {
         String[] temp = question.split("==@@");
@@ -184,24 +140,36 @@ public class QuestionActivity extends AppCompatActivity {
 
 
         ConstraintLayout constraintLayout = findViewById(R.id.activity_question);
+        constraintLayout.setOnClickListener(v -> {
+            if (ended && !ended2) {
+                ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
+                constraintLayout1.setVisibility(View.VISIBLE);
+                ended2 = true;
+            }
+        });
+
         for (Button button : questionArrayList) {
+            button.setVisibility(View.VISIBLE);
             button.setOnClickListener(v -> {
                 if (!ended && button.getTag() == correctOption) {
                     button.setBackgroundColor(Color.rgb(0, 255, 0));
                 } else if (!ended) {
                     button.setBackgroundColor(Color.rgb(255, 0, 0));
+
                     for (Button b : questionArrayList2) {
                         if (b.getTag() == correctOption) {
                             b.setBackgroundColor(Color.rgb(0, 255, 0));
                         }
                     }
                 }
-                ended = true;
                 if (ended && !ended2) {
                     ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
                     constraintLayout1.setVisibility(View.VISIBLE);
                     ended2 = true;
                 }
+                ended = true;
+
+
             });
         }
 
@@ -240,5 +208,21 @@ public class QuestionActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("خروج")
+                .setMessage("آیا می خواهید از مسابقه خارج شوید؟")
+                .setNegativeButton("خیر", null)
+                .setPositiveButton("بله", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(QuizActivity.this, Home.class);
+                        QuizActivity.this.startActivity(intent);
+                        finish();
+                    }
+                }).create().show();
+    }
 
 }
