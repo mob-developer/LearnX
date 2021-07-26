@@ -80,17 +80,17 @@ public class QuizActivity extends AppCompatActivity {
 
         Button report = findViewById(R.id.report);
         report.setOnClickListener(v -> {
-            Toast.makeText(this, "گزارش شما با موفقیت ثبت شد", Toast.LENGTH_LONG);
+            Toast.makeText(this, "گزارش شما با موفقیت ثبت شد", Toast.LENGTH_LONG).show();
         });
 
         Button positive = findViewById(R.id.positive);
-        report.setOnClickListener(v -> {
-            Toast.makeText(this, "نظر شما ثبت شد", Toast.LENGTH_LONG);
+        positive.setOnClickListener(v -> {
+            Toast.makeText(this, "نظر شما ثبت شد", Toast.LENGTH_LONG).show();
         });
 
         Button negative = findViewById(R.id.negative);
-        report.setOnClickListener(v -> {
-            Toast.makeText(this, "نظر شما ثبت شد", Toast.LENGTH_LONG);
+        negative.setOnClickListener(v -> {
+            Toast.makeText(this, "نظر شما ثبت شد", Toast.LENGTH_LONG).show();
         });
 
 

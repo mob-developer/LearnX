@@ -77,6 +77,20 @@ public class LearnQuizActivity extends AppCompatActivity {
         Glide.with(this).load(R.mipmap.loading_gif).into(loadingImageView);
 
 
+        Button report = findViewById(R.id.report);
+        report.setOnClickListener(v -> {
+            Toast.makeText(this, "گزارش شما با موفقیت ثبت شد", Toast.LENGTH_LONG).show();
+        });
+
+        Button positive = findViewById(R.id.positive);
+        positive.setOnClickListener(v -> {
+            Toast.makeText(this, "نظر شما ثبت شد", Toast.LENGTH_LONG).show();
+        });
+
+        Button negative = findViewById(R.id.negative);
+        negative.setOnClickListener(v -> {
+            Toast.makeText(this, "نظر شما ثبت شد", Toast.LENGTH_LONG).show();
+        });
 
 
 
