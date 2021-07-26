@@ -18,4 +18,12 @@
     <string name="like_question">حال کردم!</string>
     <string name="loading_text">در حال دریافت اطلاعات...</string>
     <string name="course_list_title">لیست دوره‌ها</string>
+    <string name="sub_course_list_title_text">لیست سرفصل‌ها</string>
+    <string name="landing_page_description">پلتفرم آموزشی رایگان</string>
+    <string name="landing_page_version">Version 0.1.0</string>
+    <string name="landing_page_login_button">ورود</string>
+    <string name="landing_page_sign_up_button">ثبت‌نام</string>
+    <string name="login_pass_field">رمز عبور</string>
+    <string name="login_button_login_page">ورود</string>
+    <string name="login_page_username_field">شناسه‌کابری یا ایمیل</string>
 </resources>

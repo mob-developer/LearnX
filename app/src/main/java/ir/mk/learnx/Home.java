@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import ir.mk.learnx.loading.Loading2;
 import ir.mk.learnx.quiz.QuizListActivity;
 import ir.mk.learnx.teach.CourseListActivity;
 
