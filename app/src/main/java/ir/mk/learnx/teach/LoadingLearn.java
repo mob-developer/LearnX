@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import java.io.IOException;
 
@@ -38,6 +41,9 @@ public class LoadingLearn extends AppCompatActivity {
         lesson = getIntent().getIntExtra("lesson", -1);
         courseId = getIntent().getIntExtra("courseId", -1);
         subCourseId = getIntent().getIntExtra("subCourseId", -1);
+
+        ImageView loadingImageView = findViewById(R.id.loading_learn_gif);
+        Glide.with(this).load(R.mipmap.loading_gif).into(loadingImageView);
 
         getAllSteps(lesson, courseId, subCourseId);
 
