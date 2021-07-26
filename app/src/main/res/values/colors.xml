@@ -10,4 +10,5 @@
     <color name="teal_white">#9FC5E3</color>
     <color name="back">#F6F6F6</color>
     <color name="main_green">#00D0AF</color>
+    <color name="red">#FF0000</color>
 </resources>

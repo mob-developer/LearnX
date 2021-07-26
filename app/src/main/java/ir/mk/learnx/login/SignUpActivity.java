@@ -3,15 +3,22 @@ package ir.mk.learnx.login;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import ir.mk.learnx.R;
 import ir.mk.learnx.model.Account;
 
 public class SignUpActivity extends AppCompatActivity {
+    private static final int SELECT_PICTURE = 100;
+    private static ImageView imageView;
+    private Uri profilePictureUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,11 @@ public class SignUpActivity extends AppCompatActivity {
         EditText passwordField = findViewById(R.id.sign_up_password_field);
         EditText firstNameField = findViewById(R.id.sign_up_first_name);
         EditText lastNameField = findViewById(R.id.sign_up_last_name);
+        imageView = findViewById(R.id.sign_up_profile_picture);
+        imageView.setOnClickListener(v -> {
+            openImageChooser();
+        });
+
 
         button.setOnClickListener(v -> {
             if (!usernameField.getText().toString().isEmpty() && !emailField.getText().toString().isEmpty() &&
@@ -30,8 +42,10 @@ public class SignUpActivity extends AppCompatActivity {
                     !lastNameField.getText().toString().isEmpty()) {
                 new Account(firstNameField.getText().toString(), lastNameField.getText().toString(),
                         0, 0, usernameField.getText().toString(),
-                        passwordField.getText().toString(), emailField.getText().toString(), 0);
+                        passwordField.getText().toString(), emailField.getText().toString(), 0,
+                profilePictureUri);
                 Toast.makeText(this, "حساب کاربری با موفقیت ساخته شد", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(SignUpActivity.this, LandingPageActivity.class);
             } else {
                 Toast.makeText(this, "خطایی رخ داده است دوباره تلاش کنید", Toast.LENGTH_LONG).show();
             }
@@ -45,5 +59,27 @@ public class SignUpActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent i = new Intent(SignUpActivity.this, LandingPageActivity.class);
         startActivity(i);
+    }
+
+    public void openImageChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == SELECT_PICTURE) {
+                Uri selectedImageUri = data.getData();
+                if (selectedImageUri != null) {
+                    imageView.setImageURI(null);
+                    imageView.setImageURI(selectedImageUri);
+                    imageView.setCropToPadding(true);
+                    this.profilePictureUri = selectedImageUri;
+                }
+            }
+        }
     }
 }

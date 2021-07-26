@@ -1,24 +1,28 @@
 package ir.mk.learnx;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import ir.mk.learnx.adapters.HomeCourseListAdapter;
 import ir.mk.learnx.login.LandingPageActivity;
-import ir.mk.learnx.login.LoginActivity;
 import ir.mk.learnx.model.Account;
 import ir.mk.learnx.model.CourseList;
 import ir.mk.learnx.model.Server;
+import ir.mk.learnx.quiz.QuizActivity;
 import ir.mk.learnx.quiz.QuizListActivity;
 
 
@@ -47,6 +51,12 @@ public class Home extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(homeCourseListAdapter);
 
+        Button exit = findViewById(R.id.exit);
+        exit.setOnClickListener(v -> {
+            Account.setLoggedInAccount(null);
+            Intent i = new Intent(Home.this, LandingPageActivity.class);
+            startActivity(i);
+        });
 
         Button quizButton = findViewById(R.id.button_quiz);
         quizButton.setOnClickListener(v -> {
@@ -67,15 +77,33 @@ public class Home extends AppCompatActivity {
         scoreText.setText(String.valueOf(iq));
 
         TextView nameText = findViewById(R.id.textView5);
-        nameText.setText(Account.getLoggedInAccount().getFirstName() + " " + Account.getLoggedInAccount().getLastName());
+        nameText.setText(Account.getLoggedInAccount().getLastName() + " " + Account.getLoggedInAccount().getFirstName());
 
+
+        ImageView profilePicture = findViewById(R.id.imageView3);
+        if (!Account.getLoggedInAccount().getProfilePictureUri().equals(Uri.EMPTY))
+            profilePicture.setImageURI(Account.getLoggedInAccount().getProfilePictureUri());
 
 
     }
+
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(Home.this, LandingPageActivity.class);
-        startActivity(i);
+        if (Account.getLoggedInAccount() == null) {
+            Intent i = new Intent(Home.this, LandingPageActivity.class);
+            startActivity(i);
+        } else {
+            new AlertDialog.Builder(this)
+                    .setTitle("خروج")
+                    .setMessage("آیا می خواهید از برنامه خارج شوید؟")
+                    .setNegativeButton("خیر", null)
+                    .setPositiveButton("بله", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                        }
+                    }).create().show();
+        }
     }
 
 }

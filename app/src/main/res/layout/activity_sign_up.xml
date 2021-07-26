@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".login.SignUpActivity">
+
+    <ImageView
+        android:id="@+id/sign_up_profile_picture"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/ic_baseline_account_circle_24"
+        app:layout_constraintBottom_toTopOf="@+id/sign_up_email_field"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <EditText
         android:id="@+id/sign_up_email_field"
         android:layout_width="0dp"
