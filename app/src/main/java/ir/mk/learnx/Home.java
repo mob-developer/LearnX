@@ -14,6 +14,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ir.mk.learnx.adapters.HomeCourseListAdapter;
+import ir.mk.learnx.login.LandingPageActivity;
+import ir.mk.learnx.login.LoginActivity;
 import ir.mk.learnx.model.Account;
 import ir.mk.learnx.model.CourseList;
 import ir.mk.learnx.model.Server;
@@ -70,8 +72,10 @@ public class Home extends AppCompatActivity {
 
 
     }
-
-
-    boolean doubleBackToExitPressedOnce = false;
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(Home.this, LandingPageActivity.class);
+        startActivity(i);
+    }
 
 }
