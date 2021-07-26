@@ -9,7 +9,6 @@ import android.os.Looper;
 import android.widget.Button;
 import android.widget.Toast;
 
-import ir.mk.learnx.loading.Loading2;
 import ir.mk.learnx.quiz.QuizListActivity;
 import ir.mk.learnx.teach.CourseListActivity;
 

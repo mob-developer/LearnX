@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import ir.mk.learnx.R;
+import ir.mk.learnx.login.LandingPageActivity;
 
 
 public class Loading1 extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class Loading1 extends AppCompatActivity {
 
                 } finally {
 
-                    Intent i = new Intent(Loading1.this, Loading2.class);
+                    Intent i = new Intent(Loading1.this, LandingPageActivity.class);
                     startActivity(i);
                     finish();
                 }
