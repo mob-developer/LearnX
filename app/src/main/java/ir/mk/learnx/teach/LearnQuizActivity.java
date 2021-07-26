@@ -76,7 +76,6 @@ public class LearnQuizActivity extends AppCompatActivity {
         loadingImageView = findViewById(R.id.learn_quiz_loading);
         Glide.with(this).load(R.mipmap.loading_gif).into(loadingImageView);
 
-
         Button report = findViewById(R.id.report);
         report.setOnClickListener(v -> {
             Toast.makeText(this, "گزارش شما با موفقیت ثبت شد", Toast.LENGTH_LONG).show();
@@ -91,9 +90,6 @@ public class LearnQuizActivity extends AppCompatActivity {
         negative.setOnClickListener(v -> {
             Toast.makeText(this, "نظر شما ثبت شد", Toast.LENGTH_LONG).show();
         });
-
-
-
 
         handler = new Handler() {
             @SuppressLint("HandlerLeak")
@@ -164,8 +160,8 @@ public class LearnQuizActivity extends AppCompatActivity {
         threadGetQuestion.start();
     }
 
-    private int getStepType(String allStep, int thisStep){
-        return Integer.parseInt(allStep.substring(thisStep,thisStep+1));
+    private int getStepType(String allStep, int thisStep) {
+        return Integer.parseInt(allStep.substring(thisStep, thisStep + 1));
     }
 
     private void showQuestion() {
@@ -200,7 +196,7 @@ public class LearnQuizActivity extends AppCompatActivity {
         ConstraintLayout constraintLayout = findViewById(R.id.activity_question);
         constraintLayout.setOnClickListener(v -> {
             Toast.makeText(this, "view clicked!", Toast.LENGTH_SHORT).show();
-            if (ended && !ended2){
+            if (ended && !ended2) {
                 ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
                 constraintLayout1.setVisibility(View.VISIBLE);
                 ended2 = true;
@@ -221,7 +217,7 @@ public class LearnQuizActivity extends AppCompatActivity {
                         }
                     }
                 }
-                if (ended && !ended2){
+                if (ended && !ended2) {
                     ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
                     constraintLayout1.setVisibility(View.VISIBLE);
                     ended2 = true;
@@ -268,7 +264,6 @@ public class LearnQuizActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
@@ -278,9 +273,9 @@ public class LearnQuizActivity extends AppCompatActivity {
                 .setPositiveButton("بله", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Intent intent = new Intent(LearnQuizActivity.this,SubCourseListActivity.class);
-                        intent.putExtra("lesson",lesson);
-                        intent.putExtra("courseId",courseId);
+                        Intent intent = new Intent(LearnQuizActivity.this, SubCourseListActivity.class);
+                        intent.putExtra("lesson", lesson);
+                        intent.putExtra("courseId", courseId);
                         LearnQuizActivity.this.startActivity(intent);
                         finish();
                     }

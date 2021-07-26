@@ -1,5 +1,7 @@
 package ir.mk.learnx.model;
 
+import android.net.Uri;
+
 import java.util.ArrayList;
 
 public class Account {
@@ -13,9 +15,10 @@ public class Account {
     private final String username;
     private final String password;
     private final String email;
+    private final Uri profilePictureUri;
     private int score;
 
-    public Account(String firstName, String lastName, int age, int phoneNumber, String username, String password, String email, int score) {
+    public Account(String firstName, String lastName, int age, int phoneNumber, String username, String password, String email, int score, Uri profilePictureUri) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -24,6 +27,7 @@ public class Account {
         this.password = password;
         this.email = email;
         this.score = score;
+        this.profilePictureUri = profilePictureUri;
         allAccount.add(this);
     }
 
@@ -83,6 +87,10 @@ public class Account {
 
     public static Account getLoggedInAccount() {
         return loggedInAccount != null ? loggedInAccount : new Account("میهمان","",
-                0,0,"","","",0);
+                0,0,"","","",0, Uri.EMPTY);
+    }
+
+    public Uri getProfilePictureUri() {
+        return profilePictureUri;
     }
 }

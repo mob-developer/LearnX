@@ -57,13 +57,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
         this.doubleBackToExitPressedOnce = true;
 
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 3000);
+        new Handler(Looper.getMainLooper()).postDelayed(() -> doubleBackToExitPressedOnce=false, 3000);
     }
 
 }
