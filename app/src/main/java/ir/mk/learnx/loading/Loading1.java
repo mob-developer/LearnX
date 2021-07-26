@@ -22,7 +22,7 @@ public class Loading1 extends AppCompatActivity {
             public void run() {
                 try {
                     super.run();
-                    sleep(500);
+                    sleep(2500);
                 } catch (Exception e) {
 
                 } finally {
