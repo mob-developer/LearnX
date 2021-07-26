@@ -1,6 +1,7 @@
 package ir.mk.learnx.teach;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -243,5 +245,24 @@ public class LearnQuizActivity extends AppCompatActivity {
         }
     }
 
+
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("خروج")
+                .setMessage("آیا می خواهید از تدریس خارج شوید؟")
+                .setNegativeButton("خیر", null)
+                .setPositiveButton("بله", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent intent = new Intent(LearnQuizActivity.this,SubCourseListActivity.class);
+                        intent.putExtra("lesson",lesson);
+                        intent.putExtra("courseId",courseId);
+                        LearnQuizActivity.this.startActivity(intent);
+                        finish();
+                    }
+                }).create().show();
+    }
 
 }

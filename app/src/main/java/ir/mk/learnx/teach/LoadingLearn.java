@@ -124,4 +124,13 @@ public class LoadingLearn extends AppCompatActivity {
             return response.body().string();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this,SubCourseListActivity.class);
+        intent.putExtra("lesson",lesson);
+        intent.putExtra("courseId",courseId);
+        startActivity(intent);
+        finish();
+    }
 }
