@@ -184,7 +184,17 @@ public class LearnQuizActivity extends AppCompatActivity {
 
 
         ConstraintLayout constraintLayout = findViewById(R.id.activity_question);
+        constraintLayout.setOnClickListener(v -> {
+            Toast.makeText(this, "view clicked!", Toast.LENGTH_SHORT).show();
+            if (ended && !ended2){
+                ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
+                constraintLayout1.setVisibility(View.VISIBLE);
+                ended2 = true;
+            }
+        });
+
         for (Button button : questionArrayList) {
+            button.setVisibility(View.VISIBLE);
             button.setOnClickListener(v -> {
                 if (!ended && button.getTag() == correctOption) {
                     button.setBackgroundColor(Color.rgb(0, 255, 0));
@@ -197,15 +207,13 @@ public class LearnQuizActivity extends AppCompatActivity {
                         }
                     }
                 }
-                ended = true;
-
-                if (ended && !ended2) {
+                if (ended && !ended2){
                     ConstraintLayout constraintLayout1 = findViewById(R.id.quiz_end);
                     constraintLayout1.setVisibility(View.VISIBLE);
                     ended2 = true;
-                } else if (ended && ended2) {
-
                 }
+                ended = true;
+
 
             });
         }

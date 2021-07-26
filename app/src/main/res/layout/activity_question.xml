@@ -28,6 +28,7 @@
         android:layout_height="100dp"
         android:layout_margin="8dp"
         android:text="Button"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/btn_quiz_ans4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -46,6 +47,7 @@
         android:layout_height="100dp"
         android:layout_margin="8dp"
         android:text="Button"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/btn_quiz_ans3"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +60,7 @@
         android:layout_margin="8dp"
         android:layout_marginBottom="8dp"
         android:text="Button"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent" />
@@ -69,6 +72,7 @@
         android:layout_margin="8dp"
         android:layout_marginBottom="8dp"
         android:text="Button"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
