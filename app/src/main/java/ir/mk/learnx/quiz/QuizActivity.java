@@ -3,6 +3,7 @@ package ir.mk.learnx.quiz;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -54,14 +55,20 @@ public class QuizActivity extends AppCompatActivity {
     private static final int GET_QUESTIONS = 1;
     OkHttpClient client = new OkHttpClient();
     private ImageView loadingImageView;
-
+    private int iq;
+    private TextView iqTextView;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    @SuppressLint("HandlerLeak")
+    @SuppressLint({"HandlerLeak", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(Server.MY_PREFS_NAME, MODE_PRIVATE);
+        iq = sharedPreferences.getInt("iq", 0);
+        iqTextView = findViewById(R.id.iq_textView);
+        iqTextView.setText("IQ " + iq);
 
         lesson = getIntent().getIntExtra("lesson", -1);
         thisStep = getIntent().getIntExtra("step", 1);
@@ -85,8 +92,6 @@ public class QuizActivity extends AppCompatActivity {
         report.setOnClickListener(v -> {
             Toast.makeText(this, "نظر شما ثبت شد", Toast.LENGTH_LONG);
         });
-
-
 
 
         loadingImageView = findViewById(R.id.learn_quiz_loading);
@@ -118,7 +123,7 @@ public class QuizActivity extends AppCompatActivity {
                 intent.putExtra("allStep", allStep);
                 startActivity(intent);
             } else {
-                Intent intent = new Intent(this,EndQuiz.class);
+                Intent intent = new Intent(this, EndQuiz.class);
                 startActivity(intent);
             }
         });
@@ -184,10 +189,25 @@ public class QuizActivity extends AppCompatActivity {
             button.setVisibility(View.VISIBLE);
             button.setOnClickListener(v -> {
                 if (!ended && button.getTag() == correctOption) {
+                    iq += 5;
                     button.setBackgroundColor(Color.rgb(0, 255, 0));
+                    TextView iqAddTextView = findViewById(R.id.addIQ);
+                    iqAddTextView.setVisibility(View.VISIBLE);
+                    Log.d("asdasd", "" + iqAddTextView.getHeight());
+                    iqAddTextView.animate().setDuration(1000).translationY(-(int) constraintLayout.getHeight() / 2 + 100);
+                    iqAddTextView.animate().setDuration(1000).translationX((int) constraintLayout.getWidth() / 2 - 100);
+                    iqAddTextView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            iqAddTextView.setVisibility(View.GONE);
+                            iqTextView.setText("IQ "+iq);
+                        }
+                    }, 980);
+                    SharedPreferences.Editor editor = getSharedPreferences(Server.MY_PREFS_NAME, MODE_PRIVATE).edit();
+                    editor.putInt("iq", iq);
+                    editor.apply();
                 } else if (!ended) {
                     button.setBackgroundColor(Color.rgb(255, 0, 0));
-
                     for (Button b : questionArrayList2) {
                         if (b.getTag() == correctOption) {
                             b.setBackgroundColor(Color.rgb(0, 255, 0));

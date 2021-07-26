@@ -183,4 +183,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/iq_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarQuiz" />
+
+    <TextView
+        android:id="@+id/addIQ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+5 IQ"
+        android:textColor="#FF0000"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/learn_quiz_loading"
+        app:layout_constraintEnd_toEndOf="@+id/learn_quiz_loading"
+        app:layout_constraintStart_toStartOf="@+id/learn_quiz_loading"
+        app:layout_constraintTop_toTopOf="@+id/learn_quiz_loading" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
