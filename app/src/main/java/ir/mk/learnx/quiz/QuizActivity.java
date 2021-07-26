@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -69,6 +70,23 @@ public class QuizActivity extends AppCompatActivity {
         ProgressBar progressBar = findViewById(R.id.progressBarQuiz);
         progressBar.setMax(allStep);
         progressBar.setProgress(thisStep, true);
+
+        Button report = findViewById(R.id.report);
+        report.setOnClickListener(v -> {
+            Toast.makeText(this, "گزارش شما با موفقیت ثبت شد", Toast.LENGTH_LONG);
+        });
+
+        Button positive = findViewById(R.id.positive);
+        report.setOnClickListener(v -> {
+            Toast.makeText(this, "نظر شما ثبت شد", Toast.LENGTH_LONG);
+        });
+
+        Button negative = findViewById(R.id.negative);
+        report.setOnClickListener(v -> {
+            Toast.makeText(this, "نظر شما ثبت شد", Toast.LENGTH_LONG);
+        });
+
+
 
 
         loadingImageView = findViewById(R.id.learn_quiz_loading);
