@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import ir.mk.learnx.quiz.QuizListActivity;
 
 public class Home extends AppCompatActivity {
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +61,14 @@ public class Home extends AppCompatActivity {
             iq = 100;
         }
         Account.getLoggedInAccount().setScore(iq);
-        TextView textView = findViewById(R.id.score);
-        textView.setText(iq);
+        TextView scoreText = findViewById(R.id.score);
+        scoreText.setText(String.valueOf(iq));
+
+        TextView nameText = findViewById(R.id.textView5);
+        nameText.setText(Account.getLoggedInAccount().getFirstName() + " " + Account.getLoggedInAccount().getLastName());
+
+
+
     }
 
 

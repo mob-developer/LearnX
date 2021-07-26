@@ -9,7 +9,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="quiz_list_title">لیست کوییزها</string>
+    <string name="quiz_list_title">لیست مسابقات</string>
     <string name="end_course_message">تبریک! \n این بخش رو تموم کردی!</string>
     <string name="end_course_button_text">ایول!</string>
     <string name="next_question">بزن بریم</string>

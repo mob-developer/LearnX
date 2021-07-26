@@ -82,6 +82,7 @@ public class Account {
     }
 
     public static Account getLoggedInAccount() {
-        return loggedInAccount;
+        return loggedInAccount != null ? loggedInAccount : new Account("میهمان","",
+                0,0,"","","",0);
     }
 }
